@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demandcarwash.entity.CustCarDetails;
 import com.example.demandcarwash.entity.CustomerDetails;
 import com.example.demandcarwash.exception.ProgramException;
+import com.mongodb.client.result.DeleteResult;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -106,6 +107,23 @@ public class CustomerDaoImpl implements CustomerDao {
 		throw new ProgramException("reposit error");
 	}
 		return null;
+	}
+	@Override
+	public boolean deleteDetail(CustCarDetails details) throws ProgramException {
+		
+		Query query=new Query();
+		String id=details.get_id();
+		query.addCriteria(Criteria.where("_id").is(id));
+//		String uName=details.getUserName();
+//		query.addCriteria(Criteria.where("userName").is(uName));
+		boolean result=mongoTemplate.exists(query,CustCarDetails.class);
+		if(result) {
+			 DeleteResult delResult=mongoTemplate.remove(query,CustCarDetails.class);
+			 if(delResult==null) {
+				 throw new ProgramException("Please check the details properly!!");
+			 }
+		}
+		return true;
 	}
 
 }

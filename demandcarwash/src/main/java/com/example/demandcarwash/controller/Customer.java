@@ -67,11 +67,20 @@ public String addUser(@RequestBody CustomerDetails customer) throws ProgramExcep
 @RequestMapping(value = "/view", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
 public List<CustCarDetails> viewDetails(@RequestBody CustCarDetails details)throws ProgramException{
 	List<CustCarDetails> result=customerService.viewDetails(details);
-    System.out.println("car");
 		if(result==null) {
 			throw new ProgramException("No Records found");
 		}
 	return result;
 }
+@RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = "application/json", produces = "text/plain")
+public String deleteDetails(@RequestBody CustCarDetails details)throws ProgramException{
+	try {
+		customerService.deleteService(details);
+	}catch(Exception e) {
+	 	throw new ProgramException("Somethig Went Wrong please try Again");
+		}
+	return "Deleted Successfully";
+}
 
 }
+

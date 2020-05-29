@@ -57,6 +57,16 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return viewDetails;
 	}
+	@Override
+	public boolean deleteService(CustCarDetails details) throws ProgramException {
+		
+		boolean result=custDao.deleteDetail(details);
+		if(result==false) {
+			throw new ProgramException("error");
+		}
+		return result;
+	}
+
 }
 
 

@@ -12,4 +12,5 @@ public interface CustomerDao {
 	public boolean addDetails(CustCarDetails details) throws ProgramException;
 	public CustomerDetails addUser(CustomerDetails customer) throws ProgramException;
 	public List<CustCarDetails> viewDetails(CustCarDetails details) throws ProgramException;
+	public boolean deleteDetail(CustCarDetails details) throws ProgramException;
 }

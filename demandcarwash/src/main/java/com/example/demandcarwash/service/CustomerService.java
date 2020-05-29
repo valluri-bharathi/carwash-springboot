@@ -12,6 +12,7 @@ public interface CustomerService {
 	boolean addDetails(CustCarDetails details) throws ProgramException;
 	CustomerDetails register(CustomerDetails customer) throws ProgramException;
 	List<CustCarDetails> viewDetails(CustCarDetails details) throws ProgramException;
-
+	public boolean deleteService(CustCarDetails details) throws ProgramException;
+	
 
 }
